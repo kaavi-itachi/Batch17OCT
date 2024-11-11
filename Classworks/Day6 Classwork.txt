@@ -1,0 +1,122 @@
+OCTOBER 29
+-l is for inlcuding libraries
+-shared used for shared library
+-pic- static library
+	
+-Installing Ctags
+	• $ sudo apt install universal-ctags
+	This allows quick navigation across files, enabling users to jump to function definitions or references. 
+	ctags -R *- 
+	To generate a tags file for all source files in a directory,
+	• Loading the index data in vi
+	• $ vi file1.c # relevant file name
+	• In vi run below command 
+	• :set tags=<path-of-tag-file>
+	
+-Navigating
+	• Ctrl-] moves from where the function is defined.
+	• Ctrl t bring back to previous tag
+	
+-Cscope - 
+cscope is a programming tool which works in console mode, text-based interface, that allows computer programmers or software developers to search source code of the programming language C, 
+
+$ sudo apt install cscope
+Cscope stores it data in a file called cscope.out
+$ cscope find.name ".[ch]"- finds cscope files
+Ctrl d meant for coming out of the cscope
+
+-Profile
+Gprof allows you to measure how much percentage of time is spent in different functions. So that we can focus on optimizing the functions which take more time or which are called more number of times.
+$ gcc -o application -pg main.c
+-pg adds instrmentation code which keeps measuring the tiem spent in different function.
+$./application- to run
+Performance report- $gprof ./application gmon.out
+
+-Debugging- checks the code line by line or the flow of the code r program
+Breakpoints and watch points: breakpoints where we can stop the code where ever we want, where watch points is the where the code stops at certain conditions.(like changes in variables ,or values or conditions)
+ -g is used fag to debugging.
+Static and shared library
+Stepinto and commands.
+Gdb
+Valgrind
+
+Shared Library:(.so)
+	• Shared libraries are .so (or in Windows .dll, or in OS X .dylib) files. All the code relating to the library is in this file, and it is referenced by programs using it at run-time. A program using a shared library only makes reference to the code that it uses in the shared library.
+	• Shared libraries reduce the amount of code that is duplicated in each program that makes use of the library, keeping the binaries small. It also allows you to replace the shared object with one that is functionally equivalent, but may have added performance benefits without needing to recompile the program that makes use of it.
+	•  Shared libraries will, however have a small additional cost for the execution of the functions as well as a run-time loading cost as all the symbols in the library need to be connected to the things they use. 
+	• Additionally, shared libraries can be loaded into an application at run-time, which is the general mechanism for implementing binary plug-in systems.
+	
+	 
+Static Library: (.a)
+	• Static libraries are .a (or in Windows .lib) files. All the code relating to the library is in this file, and it is directly linked into the program at compile time.
+	•  A program using a static library takes copies of the code that it uses from the static library and makes it part of the program. [Windows also has .lib files which are used to reference .dll files, but they act the same way as the first one].
+	• Static libraries increase the overall size of the binary, but it means that you don't need to carry along a copy of the library that is being used. As the code is connected at compile time there are not any additional run-time loading costs. The code is simply there.
+	• I prefer shared libraries, but use static libraries when needing to ensure that the binary does not have many external dependencies that may be difficult to meet, such as specific versions of the C++ standard library or specific versions of the Boost C++ library.
+	
+
+	
+GDB:
+  The purpose of a debugger such as GDB is to allow you to see what is going on "inside" another program while it executes -- or what another
+       program was doing at the moment it crashed.
+
+       GDB can do four main kinds of things (plus other things in support of these) to help you catch bugs in the act:
+
+       ·   Start your program, specifying anything that might affect its behavior.
+
+       ·   Make your program stop on specified conditions.
+
+       ·   Examine what has happened, when your program has stopped.
+
+       ·   Change things in your program, so you can experiment with correcting the effects of one bug and go on to learn about another.
+
+Key Command in GDB:
+	• Run (args)- command runs the current executable file
+	• Quit GDB (quit or q) - quit the gdb console
+	• Get help - launches manual of gdb along with all list of classes of individual commands.
+	• Setting Breakpoints- break[function name] helps to pause the program during execution when it starts to execute the function.(multiple break points can be inserted by executing the command wherever necessary. (b filename)
+	• Continue (continue or c)
+
+C Language
+
+29 October 2024
+
+
+	• Developed by Dennis Ritchie. Took time for 3 years 8months.
+	• It is suitable to system software and business packages.
+	• It is fast and efficient( files size is lesser)
+	• It is a structured programming language.
+	
+Structure of a c program:
+	• Documentation: must and should. It is for user purpose and developer purpose.( Description, author, date of creation or date of modification, version)(version should not be named as 1.0 as it is a stable version)
+	• Link Section: References including (libraries)
+	• Definition section: defining macros
+	• Global Declaration: declaring variables which are acessed globally.
+	• Function Section: (every function has its own address) main function
+	-> Declaration part & Executable part(which makes some actions)
+	• Subprogram Section
+	
+Constants, Variables and DataTypes:
+	• Carriage return and newline- cr: in the same line cursor will be on the same line. NL: cursor will be on new line.
+	• Tokens: keywords, Identifiers, Constants, Strings, special symbols, operators
+	• Operator- arithmetic , logical, relational, bitwise(xor, or,and,left shift, right shift etc),assignment
+	• ! Low=high, !high=low
+	• Data type is representing the values with (governing rules and properties).
+	1. Primitive datatype 2. user defined data type 3. derived datatypes
+	• Modifiers -signed, unsigned, long, short.
+	• Unsigned char 1 0 to 255
+	• Signed char 1 -128 to 127
+	• Unsigned char 2 0 to 65535
+	• Signed int 2 -31768 to 32767
+	• Short int, long int, long double 
+-pre increment and post inc/dec
+-Ternary Operator/Conditional Operator: op1?(op2):(op3)
+Eg: int a=5;intb=3;int res=0;
+Res=(a>b)?100:100
+Int a=9;int b=8;int c=10;
+Res=(a>b)?9:8
+Res=(res>c)?res:c
+Res=(a>b)?((a>c):a:c):((b>c)?b:c)) --- nesting of operators
+	- Size of operator- it gives no of bytes consumed by an object. Sizeof(char)
+	- Why size of looks like a function but treated as an operator?
+	- We can't execute an expression hence it is treated as operator.
+

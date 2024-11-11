@@ -1,0 +1,44 @@
+October 28, 2024
+
+Git:
+	• Creating a repository with using git link.
+	•  create a repository, open putty and select one directory.
+	• Cd directory name
+	• Touch test 01( file name to be inserted)
+	• Gid add.
+	• Git commit -m "Using updated repository"
+	• Git push origin main
+	• Username and password
+	• Then we will get to see the file we created in the repository.
+	
+
+To create a local repository we got two methods : 1. Cloning 2. init process
+Both process requires repository should be created in git.
+When we do init process - it will create .git folder in local repository 
+Major diff btw clone and init:
+Clone is having a reference(our remote or url is already present in folder)
+Init- remote url is not present-( we add a remote url(reference) which will redirect to global repo )
+Clone has more advantages . Whatever the contents are there It will get pulled.
+	• Ls -lk  -> check whether we are in root folder or not.
+	• We should not have two gits in one git folder.
+	• Touch is for empty creation
+	• Git add-> it is to push reference from local disk to .git folder( local repository)
+	• Commit- it will push the content in local direc with saved reference.(to save or track of changes)
+	• Commit should come with the message.
+	• To push this to back up or cloud- "git push"- to push into original branch(it can be main or master)
+\
+	• Gcc -c -I../inc/ ../src/calc.c -o ..//obj/calc.o ( from parent directory to root directory than tp any other directory)
+	• Gcc -c -I../inc/ ../src/calc.c -o ..//obj/main.o (object codes)
+	• Multifile compilation: Gcc -o app ./obj.calc.o ./obj/main.o (both the files are combined together to form a application)
+	• To update the change in application gcc -c -i./inc/ ./src/main.c -o ./obj/main.o
+	• To rebuild gcc -o
+	• Implicit declaration: You have used the interface name , but where is the interface you have not declared it.
+	• Gcc -o ./bin/app02 ./obj/main.o- to create a application In bin
+	• To run the application - ./bin/app02
+	• What changes got affected for the modification of the source code- clean , execute build- make file utility
+	• To remove .o files -  rm ./bin/* 
+	• *means every content to be removed to the respective file
+	• Makefile or Makefile
+	• Cp -rf src dest
+	• /home2/user59/kaavya
+	• /home2/user59/Batch17Oct2024_487

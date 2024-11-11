@@ -1,0 +1,87 @@
+Nov 4:
+I/o Statements:
+	• To perform the basic i/o function c provides the library of functions. The library is called stdio.h
+	• Two types of i/o operations: formatted i/o statements, unformatted i/o statements.
+	• Formatted i/o: we can define the output, Unformatted i/o: we cannot define and all acts/ depends upon characters.
+	• Scanf, getch, printf, getchar….
+	• Scanf , printf- formatted
+	• Getchar,gets(), putchar(),puts()..,- unformatted i/o
+	• Executable statement of scanf: scanf("Control String",address_list)- why address list is used , because when we scan the user input it kept or reintialise into address_list.
+	• %u- unsigned value.
+	• Example: num=386; scanf("%3d",&num);
+	• 3 defines that it should read first three digits of the number . The rest of numbers will be in temporary buffer.
+	• Same goes for printf too.
+	• "%0d" means if the field is empty it will filled with zeros.
+	• In printf we are dereferencing (picing up the value store the address and printing the value) the address.
+
+	- fflush (stdin)- to over come to clear the temporary buffer. (it is not working in linux environment. But in unix environment.
+	- Scanf(" "); -to overcome for clearing buffer.it scans single character value.
+	- Scanf("%.3c");
+	- Space or new line character (enter)acts as a end of string or character.
+	- Scanf("%[^\n]s",name]: when I give input as Kaavya Srinivasulu without it , it will output as name : kaavya temp: Srinivasulu
+	- If we give input withit it will give output as name: kaavya Srinivasulu and for temp the name we give as input.
+	- Stack smashing detected (ERROR): buffer overflow and to clear unreserved space we didn’t permisison for executable error.( signal interruption has ocurred)
+	- Address of i: 3472, f: 3476, ch :3471, str1:3488,d:3480:wq
+	- This called as base address(starting address) of any variable.
+	- While doing scanf we should not add space at the end of format specifier. If we add means we have a character there.
+	- We can give space before format specifier until unless both used are integers.
+	- No \t,\n (no unprintable characters)used In scanf.
+	- Sprintf(itoa)= integer to string, atoi= string to integer
+	- Sscanf=?
+	- Unformatted i/o: getc,putc= read write single char->stream
+	- Get char,putchar->read/write single char->std i/o
+	- Gets,puts->read or write for a string->stream
+	- Getch()=DOS platform->not echo read char to the screen
+	- Getc : help you in streams, getchar will help you in stdio.
+	- Fgetc , getc are same.
+	- Where these can be used?
+	- When we use single character it is better to use getc,getchar as it doesnot check errors like scanf also it is much faster.
+String Handling:
+Gets- it can assign as well as store it In the buffer.
+Fgets o gets reads until a new line
+
+Decision Making & Branching:
+	• When we have multiple conditions we do branching statements.
+	• Branching: roots and diversions
+	• If(cond)
+	{
+	If block of statememnt
+	}
+	• Boolean is not a datatype.
+Nested if:
+If (cond1)
+{
+If(cond2)
+{
+}
+Else
+{
+}
+}
+Else{
+If(cond3)
+{
+}
+Else
+{
+}
+}
+
+Nested if: where the parent cond is not tested again
+#include<stdio.h>
+Int main()
+{
+Int I;
+Float f;
+Char c;
+Char str1[20];
+Double d;
+Printf("enter the proper values:\n");
+Printf("Enter the integer value: ");
+Printf("\n Integer value: \05d\n",i);
+Return 0;
+}
+Gcc p1.c
+./a.out
+How to avoid numeric constants?
+Printing all the character which are present in the string

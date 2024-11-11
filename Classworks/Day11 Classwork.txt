@@ -1,0 +1,143 @@
+Strings
+
+08 November 2024
+
+int main()
+{
+   char Name[5];
+   int i;
+   for(i=0;i<5;i++)
+   {
+       scanf("%c",&Name[i]);
+   }
+   Name[5]='\0';
+   for(i=0;i<5;i++)
+   {
+       printf("\n%c=%d\n",Name[i],Name[i]);
+       
+   }
+   printf("%s",Name);
+   printf("\n\n");
+   return 0;
+}
+
+To reverse a given string
+To reverse the given interval of a string
+
+	• Double free detected error
+	• We should not do double free.(what kind of error we get and how to avoid it)
+
+Strings: A collection of character ended with a Null. Ends with /0?
+Defining characters: char a='D'
+Char Name[5]={'H','e','l','l','0'};
+
+Declare a  string: 
+Char Name[6]={'H','e','l','l','o','\0'};
+Char Name[]="Hello World"
+Char Str1[21];// should not cross this size.
+Char Name[][20];//It"% should not cross 20 characters in each row
+Char Names[10][50];// here there are 10 names each of max capacity of 50 characters.
+STRCPY-cpoies the string (char *strcpy(char *dest,const char *src), STRNCPY- copies only certain characters(char *strncpy(char *dest,const char *src, size_t n);
+STRCAT=appends the src string to dest string. (destination>Source).
+STRCMP=Compares the two strings
+ 
+Mem cpy- copies 
+the memory.memset- handling with structure if we want to intialise it we do memset.
+Str str- finds the first occurenece of the substring. If it is present a pointer to the beginning of the localted substring, ot=r Null if the substring not found.
+Strchr-return a pointer to the first occurrence of the character c in the string s.
+Strchr- gives from the last occurrence.
+(strtok- very important),
+	• Tokenization- extract token from strings.
+	•  strlen(excluding null charcaters gives length),
+If there are any errors we handle with strerror. 
+*str sep
+
+Strcmp : 
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char s1[20],s2[20];
+   char d1[40],d2[40];
+   int ret=0;
+   scanf("%s%s",s1,s2);
+   printf("\n s1=%s\ts2=%s",s1,s2);
+   ret=strcmp(s1,s2);
+   printf("\nRet=%d",ret);
+   printf("\n\n");
+   return 0;
+}
+
+Strcmp- It also gives base address of destination
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char s1[20],s2[20];
+   char d1[40],d2[40];
+   int ret=0;
+   scanf("%s%s",s1,s2);
+   printf("\n s1=%s\ts2=%s",s1,s2);
+   /*ret=strcmp(s1,s2);
+   printf("\nRet=%d",ret);*/
+   strcpy(d1,s1);
+   printf("\nd1=%s",d1);
+   printf("\n\n");
+   return 0;
+}
+
+User defined Datatype
+
+08 November 2024
+
+UDT: structure, union, enumerations
+Keywords: struct, union, enum
+struct tagName{
+Members of struct
+};  
+
+struct Chair
+{
+ int noLegs;
+ char make[20];
+ char material[20];
+ float price;
+ char ddm[20];
+ char pom[20];
+};----> why there is semicolon here?
+
+
+Struct square s1,s2,s3;
+Struct Square
+{
+Int len;
+Int breadth;
+}s1,s2,s3,s[10];
+                    |-> we can declare array of structure.
+
+Void func(struct Sqaure s)
+{
+}
+
+typdef struct square SQR;
+
+This sqr can be used to the function
+void func(SQR)
+{
+}
+Or
+Typdef struct Square
+{
+Int len;
+Int breadth;
+}SQR1;
+
+
+Use the struct : to use we need to access the elements,or propoerties of the structure.
+The member of the structure can be accessed by two ways 1) . 2) ->
+	1) . = if it is a static variable= nameVar.memberName
+	2) -> = variable when it is a pointer variable= nameVar->memberName
+
+#include <stdio.h>

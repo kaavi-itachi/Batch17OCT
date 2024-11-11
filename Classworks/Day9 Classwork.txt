@@ -1,0 +1,76 @@
+Arrays:
+->Arrays can be notified by using []. It stores homogeneous elements. Elements are stored in consecutive manner.
+	• When we are using a array a chunk of memory is allocated to it Based on size or capacity of array.
+	• Syntax : dt arrnam[size]
+	• Declaring an array:
+	• Example: int arr[10]; float arr1[10];
+	• Struct emp
+	• {
+	• Int id; char name[20];
+	• };
+	• Struct emp e[10];
+	• How to store the elements of array?- //access elements of arr to store or evaluate
+	• ArrName9[indexvalue]=Value;
+	• Why it should it start from Zero?
+	• Arr[2]=20;
+	• The declaration and allocation of the memory starts from lowest to top.
+	• Base address+(indexvalue*sizeof)-moving of array addresses for accessing elements
+	• The index value always be an integer value not a float.
+	
+	• There are four types of array: static, dynamic, stretchable, mutable array
+	• Static Array: The size of the array is known before the compilation time.(stack memory)
+	• Dynamic Array: The size of array is known at the execution time explicitly to user input.(heap memory)
+	• Malloc, calloc, realloc- 
+	• Mutable: the size of array known at the time linking before execution. 
+	• Stretchable Array:  Either can be increased or shrinking(decreased) at the time of execution time.
+
+
+
+Functions:
+
+	• A certain task to be performed for a particular purpose.
+	• To trigger the function we call the function.
+	• Contents will be present in the function we need to call it.
+	• In return we get something
+	• There are two categories 
+	• 1. Standard libraries - printf,sqrt,abs,pow
+	• 2. User defined- user is defining his/her own task to be performed
+rdt fName(input args)       rdt-return data type. Function name it starts from lower case and underscore(for specific function)
+{
+Sts;
+Return rdt;
+}
+
+Int add(int,int); -> semicolon it is because there isno function hence it can be taken as declaration part.
+Int add (int val1, int val2)
+{
+Int result= val1+val2;
+Return result;
+}
+
+Function implementation- .c files
+Function prototype: header files
+
+#ifndef ISPRIME_H}   if we use this there is no need redefine it. Duplicate values can be avoided.
+#define ISPRIME_H}
+
+//function without input arguments
+void disp();
+
+//function with inout args and with return type
+int add(int,int);
+
+//functions with input args and no return type.
+void changeName(char *)
+
+	• A function calling itself is called recursive function.
+	• Function stack frame is different from recursive function stack frame.
+	 a function is called, a stack frame is created on the call stack. This stack frame contains:
+	• Return Address: The point in the program where control should return after the function completes.
+	• Local Variables: Variables declared within the function.
+	• Parameters: Values passed to the function.
+	• Saved Registers: Registers that need to be restored after the function call.
+	• AFTER THE COMPLETION THE ADDRESS IS GET DESTROYED.
+	•  a recursive function, each call to the function creates a new stack frame. This means that multiple instances of the function can exist simultaneously, each with its own set of local variables and parameters. At the last call it destroys the values.
+
+

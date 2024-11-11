@@ -1,0 +1,303 @@
+Pointers
+
+07 November 2024
+
+
+	• It is a special variable which holds the address of another variable.
+	• Datatype *ptrName;
+	• Pointer cannot belong to any kind of datatype.
+	• The address might be any data type.
+	• *ptr is special variable which is pointing to integer data type.
+	• Null pointer , void pointer( point to any kind of datatype, also called as generic pointer) , wild pointer(int,float etc).
+	• The size of all pointers are same. Maximum it can take upto 8 bytes.
+	• It doesn’t hold a data type but points to a data type.
+	
+	#include <stdio.h>
+	 int main()
+	 {
+	  int a=10;
+	  float b=20.2f;
+	  void *ptr=NULL;
+	  printf("\n Address of a=%u and its value=%d",&a,a);
+	  printf("\n Address of b=%u and its value=%f",&b,b);
+	  printf("\n Address of ptr=%u and its value=%d",&ptr,ptr);
+	  printf("\n Size of a=%d",sizeof(a));
+	  printf("\n Size of b=%d",sizeof(b));
+	  printf("\n Size of ptr=%d",sizeof(ptr));
+	  return 0;
+	 }
+	
+	
+	ERROR: INVALID USE OF VOID EXPRESSION: Generic pointer are not capable enough to convert by itself. We need to explicitly convert by use of type conversion.
+	
+	#include <stdio.h>
+	 int main()
+	 {
+	  int a=10;
+	  float b=20.2f;
+	  int *ptr=NULL;
+	  void *ptr1=NULL;
+	  printf("\n Address of a=%u and its value=%d",&a,a);
+	  printf("\n Address of b=%u and its value=%f",&b,b);
+	  printf("\n Address of ptr=%u and its value=%d",&ptr,ptr);
+	  printf("\n Size of a=%d",sizeof(a));
+	  printf("\n Size of b=%d",sizeof(b));
+	  printf("\n Size of ptr=%d",sizeof(ptr));
+	  ptr=&a;
+	  ptr1=&a;
+	  printf("\n value of a: %d",*ptr);    o/p=10 
+	  printf("\n value of a: %d",*(int *)ptr);    o/p=10 (type conversion )
+	
+	  return 0;
+	  
+	 }
+	
+	-> If pointer to pointing to particular to its data type then type conversion is no need.
+	
+	#include <stdio.h>
+	 int main()
+	 {
+	     int a=10;
+	     int b[3]={11,12,13};
+	     int *ptr=NULL;
+	     int *ptr1=NULL;
+	     printf("\n Value");
+	     ptr=&a;
+	     printf("\n Address of ptr=%u and stored address ptr=%u",&ptr,ptr);
+	     printf("\n Value stored at %u=%d",ptr,*ptr);
+	     ptr1=&b;
+	     printf("\n Value of stored at %u=%d",ptr,*ptr);
+	     printf("b[0]=%d",ptr1[0]);
+	     printf("\nb[1]=%d",ptr1[1]);
+	     printf("\nb[2]=%d",ptr1[2]);
+	     
+	     return 0;
+	 }
+	
+	// Two Thumb rules 
+	//&*-> Nullify each other( there will be no symbols)
+	//convert the []-> *( array to pointer)
+	//op[]=>*op
+	//*op=>op[]
+	#include <stdio.h>
+	 int main()
+	 {
+	    int a=10;
+	    int b[]={11,12,13};
+	    int *ptr=NULL;
+	    ptr=&b[0];// here ptr is assigned to base address of the array.
+	    //ptr=&*(b+0);
+	    //ptr=(b+0)
+	    ptr=b;
+	    for(int i=0;i<3;i++){
+	        printf("\n%d ",*(ptr+i));
+	    }
+	    b[1]=100;
+	    *(ptr+1)=100;
+	    printf("\nNewly Changed");
+	    for(int i=0;i<3;i++){
+	        printf("\n%d ",*(ptr+i));
+	    }
+	    return 0;
+	 }
+
+
+Dynamics of pointers: 
+
+Segmentation Fault Error:   when the address is not mentioned (it has no place to store) that time this error comes.
+ when we want to store in unnamed address it can be possible stlib (malloc, calloc, realloc)
+
+Void *malloc(size_t size)-> only allocation of memory and base address is sent if it is passes.
+
+
+To allocate a memory 
+// dynamic pointers
+//allocating a memory before we use it.
+#include<stdio.h>
+#include<stdlib.h>
+ int main()
+ {
+    int a=10;
+    int *ptr=NULL;
+    
+    ptr=(int *)malloc(4);
+    printf("\n address of ptr:%d",ptr);
+   // printf("\n Value stored at ptr=%d",ptr);
+    *ptr=101;
+    printf("\n Value stored at ptr=%d",*ptr);
+    printf("\n value of a=%d",a);
+    printf("\n\n");
+    return 0;
+ }
+
+// dynamic pointers
+//allocating a memory before we use it.
+#include<stdio.h>
+#include<stdlib.h>
+ int main()
+ {
+    int a=10;
+    int *ptr=NULL;
+    
+    ptr=(int *)malloc(3*sizeof(int));
+    printf("\n address of ptr:%d",ptr);
+   // printf("\n Value stored at ptr=%d",ptr);
+    *ptr=101;
+    printf("\n Value stored at ptr=%d",*ptr);
+    printf("\n value of a=%d",a);
+    printf("\n\n");
+    return 0;
+ }
+
+// dynamic pointers
+//allocating a memory before we use it.
+#include<stdio.h>
+#include<stdlib.h>
+ int main()
+ {
+    int a=10;
+    int *ptr=NULL;
+    
+    ptr=(int *)malloc(3*sizeof(int));
+    printf("\n address of ptr:%d",ptr);
+   // printf("\n Value stored at ptr=%d",ptr);
+    ptr[0]=101;
+    ptr[1]=102;
+    ptr[2]=103;
+    printf("\n Value stored at ptr=%d",*ptr);
+    printf("\n value of a=%d",a);
+    printf("\n Array Elements: ");
+    for(int i=0;i<=2;i++)
+    {
+        printf("\n %d",ptr[i]);
+    }
+    printf("\n\n");
+    return 0;
+ }
+
+#include<stdio.h>
+#include<stdlib.h>
+ int main()
+ {
+    int a=10;
+    int *ptr=NULL;
+    
+    ptr=(int *)malloc(3*sizeof (int));
+    if(ptr==NULL)
+    {
+        perror("malloc: ");//perror is used whenever we use stdlib( capture actuall error)
+        exit(0);
+    }
+    printf("\n address of ptr:%d",ptr);
+   // printf("\n Value stored at ptr=%d",ptr);
+    ptr[0]=101;
+    ptr[1]=102;
+    ptr[2]=103;
+    printf("\n Value stored at ptr=%d",*ptr);
+    printf("\n value of a=%d",a);
+    printf("\n Array Elements: ");
+    for(int i=0;i<=2;i++)
+    {
+        printf("\n %d",ptr[i]);
+    }
+    printf("\n\n");
+    return 0;
+ }
+
+Pointer Is pointed to a reference and address where in the address(reference)  is destroyed 
+Is called Dangling Point situation
+
+It can be overcomed by storage classes.(static,auto,extern,register)
+#include <stdio.h>
+int *allocMem();
+
+int main()
+{
+    int a=10;
+    int *ptr=NULL;
+    ptr=allocMem();// after this reference is destroyed
+    printf("\n%d\n",*ptr);
+    return 0;
+}
+int *allocMem()
+{
+    static int a=10;// it make our variable existing till the end of the process
+    return &a;
+}
+
+//Static Keyword
+#include <stdio.h>
+int func();
+
+int main()
+{
+    int ret=0;
+    ret =func();
+    printf("Ret = %d",ret);
+    printf("\n\n");
+    printf("Ret = %d",ret);
+    printf("\n\n");
+    return 0;
+}
+int func()
+{
+    static int a=10;//static makes it as global variable type. it makes it exist till the duration of program.
+    a=a+2;
+    return a;
+}
+
+//auto-it takes up whatever data type it is assigned to.
+//Register- not all variables use register. Which are frequently used should be used.
+#include <stdio.h>
+int func();
+
+int main()
+{
+    register int ret=0;// ret is stored in cpu register.Time taken to access  is much faster than static tt
+    ret =func();
+    printf("Ret = %d",ret);
+    printf("\n\n");
+    printf("Ret = %d",ret);
+    printf("\n\n");
+    int i;
+    for(int i=0;i<1000;i++)//cpu accessing i 3002 times
+    {
+        printf("%d",i);
+    }
+    return 0;
+}
+int func()
+{
+    register int a=10;//static makes it as global variable type. it makes it exist till the duration of program.
+    a=a+2;
+    return a;
+}
+//Extern- it gives us reference that a variable is declared in other file.
+ to build our app: gcc -o app filename
+Gcc -o app filename config
+./app
+
+#include <stdio.h>
+//#define CAP 5// size of array is taking from here
+//int CAP=5;//global declaration
+
+extern int CAP;//here cap is declared in another file.we are using extern keyword to say it might be  declared somewhere.
+int main()
+{
+  int arr[CAP];
+  int i;
+  for(i=0;i<CAP;i++)
+  {
+      scanf("%d",&arr[i]);
+  }
+  printf("\nList is \n");
+  for(i=0;i<CAP;i++)
+  {
+      printf("\n%d",arr[i]);
+  }
+  printf("\n\n");
+  return 0;
+}
+
+
+

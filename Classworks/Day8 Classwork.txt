@@ -1,0 +1,26 @@
+Else-IF ladder
+
+
+	1. Else if ladder: It will test all the test cases until it match the test case.
+	2. It will be helpful in non-numeric constants to be tested.
+	3. Switch case: nt In condition only integers and ascii characters should be kept.
+	• Process exited normally- whatever allocation has taken place has no bugs in gdb.
+	• Default can be kept at starting of the switch condition but keeping break is mandatory.
+	• Else if ladder we can have duplicate test cases.
+	4. Looping:  1. Initialising variables 2. cond check 3.stats to be executed 4.counter
+	5. There are three types : 1. do while 2. while 3. for
+	6. Two types of loops : 1. entry controlled 2. exit controlled
+	
+Do{
+}while(cond);
+Why there is a semicolon at the end of do-while ?
+
+While & for 
+Why for?
+We can intialise more than one variable, counters can be more than one (while running parallely)
+More than one condition checking
+We can ommit one or more sections.
+NOV  06-
+
+For Loop is a entry based loop . Convert it to the exit controllable based loop.(ask Pras)
+Go To Statements.
