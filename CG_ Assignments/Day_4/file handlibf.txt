@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LINE_LENGTH 80
+
+// Function to write a line to the file
+int write(FILE *fptr, char *line) {
+    if (fptr == NULL || line == NULL) {
+        return -1;  // Error if the file pointer or line is NULL
+    }
+    fprintf(fptr, "%s\n", line);  // Write the line to the file
+    return 0;  // Success
+}
+
+// Function to read a line from the file
+int read(FILE *fptr, char *linebuf) {
+    if (fptr == NULL || linebuf == NULL) {
+        return -1;  // Error if the file pointer or buffer is NULL
+    }
+    if (fgets(linebuf, MAX_LINE_LENGTH, fptr) == NULL) {
+        return -1;  // Error or end of file
+    }
+    return 0;  // Success
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Error: Please provide exactly two lines of text as arguments.\n");
+        return 1;
+    }
+
+    // Open the file for writing
+    FILE *fout = fopen("fout.txt", "w");
+    if (fout == NULL) {
+        printf("Error: Unable to open file for writing.\n");
+        return 1;
+    }
+
+    // Write the two lines to the file
+    if (write(fout, argv[1]) == -1 || write(fout, argv[2]) == -1) {
+        printf("Error: Unable to write to the file.\n");
+        fclose(fout);
+        return 1;
+    }
+
+    fclose(fout);  // Close the file after writing
+
+    // Open the file for reading
+    fout = fopen("fout.txt", "r");
+    if (fout == NULL) {
+        printf("Error: Unable to open file for reading.\n");
+        return 1;
+    }
+
+    char linebuf[MAX_LINE_LENGTH];
+    printf("File contents:\n");
+
+    // Read and display the lines from the file
+    while (read(fout, linebuf) == 0) {
+        printf("%s", linebuf);
+    }
+
+    fclose(fout);  // Close the file after reading
+    return 0;
+}
+
+
+gcc -o file_example file_example.c
+./file_example "First line of text" "Second line of text"
