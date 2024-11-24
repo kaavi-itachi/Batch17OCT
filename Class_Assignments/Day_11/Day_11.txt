@@ -1,0 +1,169 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_EMPLOYEES 100
+
+// Define a structure for Employee
+typedef struct {
+    int id;
+    char firstName[50];
+    char lastName[50];
+    float salary;
+} Employee;
+
+int main() {
+    Employee employees[MAX_EMPLOYEES];
+    int count = 0;
+
+    int choice, id;
+    char lastName[50];
+    float salary;
+    char newLastName[50];
+
+    while (1) {
+        // Display menu
+        printf("\n1. Scan Employee Records\n");
+        printf("2. Display Employee Records\n");
+        printf("3. Search Employee by ID\n");
+        printf("4. Search Employee by Last Name\n");
+        printf("5. Search Employees with Salary Between 6K and 10K\n");
+        printf("6. Update Employee Last Name\n");
+        printf("7. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                scanEmployeeRecords(employees, &count);
+                break;
+            case 2:
+                displayEmployeeRecords(employees, count);
+                break;
+            case 3:
+                printf("Enter Employee ID to search: ");
+                scanf("%d", &id);
+                searchEmployeeByID(employees, count, id);
+                break;
+            case 4:
+                printf("Enter Employee Last Name to search: ");
+                scanf("%s", lastName);
+                searchEmployeeByLastName(employees, count, lastName);
+                break;
+            case 5:
+                searchEmployeesBySalaryRange(employees, count);
+                break;
+            case 6:
+                printf("Enter Employee ID to update last name: ");
+                scanf("%d", &id);
+                printf("Enter new last name: ");
+                scanf("%s", newLastName);
+                updateEmployeeLastName(employees, count, id, newLastName);
+                break;
+            case 7:
+                printf("Exiting program.\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
+
+// Function to scan employee records
+void scanEmployeeRecords(Employee employees[], int *count) {
+    int n;
+    printf("Enter number of employees: ");
+    scanf("%d", &n);
+    *count = n;
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter details for Employee %d\n", i + 1);
+        printf("ID: ");
+        scanf("%d", &employees[i].id);
+        printf("First Name: ");
+        scanf("%s", employees[i].firstName);
+        printf("Last Name: ");
+        scanf("%s", employees[i].lastName);
+        printf("Salary: ");
+        scanf("%f", &employees[i].salary);
+    }
+}
+
+// Function to display all employee records
+void displayEmployeeRecords(Employee employees[], int count) {
+    printf("\nEmployee Records:\n");
+    for (int i = 0; i < count; i++) {
+        printf("\nEmployee %d\n", i + 1);
+        printf("ID: %d\n", employees[i].id);
+        printf("First Name: %s\n", employees[i].firstName);
+        printf("Last Name: %s\n", employees[i].lastName);
+        printf("Salary: %.2f\n", employees[i].salary);
+    }
+}
+
+// Function to search for an employee by ID
+void searchEmployeeByID(Employee employees[], int count, int id) {
+    for (int i = 0; i < count; i++) {
+        if (employees[i].id == id) {
+            printf("\nEmployee Found:\n");
+            printf("ID: %d\n", employees[i].id);
+            printf("First Name: %s\n", employees[i].firstName);
+            printf("Last Name: %s\n", employees[i].lastName);
+            printf("Salary: %.2f\n", employees[i].salary);
+            return;
+        }
+    }
+    printf("Employee with ID %d not found.\n", id);
+}
+
+// Function to search for an employee by last name
+void searchEmployeeByLastName(Employee employees[], int count, const char *lastName) {
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+        if (strcmp(employees[i].lastName, lastName) == 0) {
+            printf("\nEmployee Found:\n");
+            printf("ID: %d\n", employees[i].id);
+            printf("First Name: %s\n", employees[i].firstName);
+            printf("Last Name: %s\n", employees[i].lastName);
+            printf("Salary: %.2f\n", employees[i].salary);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("Employee with last name %s not found.\n", lastName);
+    }
+}
+
+// Function to search for employees whose salary is between 6K and 10K
+void searchEmployeesBySalaryRange(Employee employees[], int count) {
+    printf("\nEmployees with salary between 6000 and 10000:\n");
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+        if (employees[i].salary >= 6000 && employees[i].salary <= 10000) {
+            printf("ID: %d\n", employees[i].id);
+            printf("First Name: %s\n", employees[i].firstName);
+            printf("Last Name: %s\n", employees[i].lastName);
+            printf("Salary: %.2f\n", employees[i].salary);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("No employees found in the specified salary range.\n");
+    }
+}
+
+// Function to update employee's last name by ID
+void updateEmployeeLastName(Employee employees[], int count, int id, const char *newLastName) {
+    for (int i = 0; i < count; i++) {
+        if (employees[i].id == id) {
+            strcpy(employees[i].lastName, newLastName);
+            printf("\nEmployee last name updated successfully!\n");
+            printf("New Last Name: %s\n", employees[i].lastName);
+            return;
+        }
+    }
+    printf("Employee with ID %d not found.\n", id);
+}
+
+
